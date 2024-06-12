@@ -1,0 +1,71 @@
+## PROJECT 2
+#bank management system
+holder={}
+def openacc():
+    name=input("enter account holders name:")
+    date=input("enter todays date:")
+    phone=int(input("enter your phone number:"))
+    pan=input("enter your permanent account number:")
+    accounttype=input("enter your account type(saving/current/fd):")
+    balance=int(input("enter opening balance (in rupees):"))
+    account = {"name": name, "balance": balance}
+    holder[name] = account
+    print("Account opened sucessfully")
+
+def deposit():
+    name_to_deposit = input("Enter your name: ")
+    account=holder.get(name_to_deposit)
+    if account:
+        damt =  int(input("Enter the amount you want to deposit (in rupees): "))
+        account["balance"] += damt
+        print("Amount added successfully")
+        print(account)
+    else:
+        print("Name does not exist in the record")
+
+def withdraw():
+    name_to_withdraw=input("Enter your name:")
+    account=holder.get(name_to_withdraw)
+    if account:
+        wamt= int(input("enter the amount you want to withdraw (in rupees):"))
+        if wamt< account["balance"]:
+            account["balance"] -= wamt
+            print("Amount deducted sucessfully")
+            print(account)
+        else:
+            print("Insufficient balance")
+    else:
+        print("Name does not exist in the record")
+        
+def display():
+    print(holder)
+    
+def search():
+    name_to_search=input("enter the name you want to search:")
+    account=holder.get(name_to_search)
+    if account:
+        print(account)
+    else:
+        print("Invalid input")
+        
+def main():
+    while True:
+        print("\n Bank management system \n 1. Open account \n 2. Deposit amount \n 3. Withdraw amount \n 4. Display account information \n 5. Search account \n 6. Exit")
+        choice=input("Enter your choice (1-6): ")
+        
+        if choice=='1':
+            openacc()
+        elif choice=='2':
+            deposit()
+        elif choice=='3':
+            withdraw()
+        elif choice=='4':
+            display()
+        elif choice=='5':
+            search()
+        elif choice=='6':
+            print("Exiting the system.")
+            break
+        else:
+            print("Invalid input.")
+main()

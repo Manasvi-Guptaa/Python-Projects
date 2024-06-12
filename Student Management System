@@ -1,0 +1,56 @@
+## PROJECT 1 
+#student management system using list
+students=[]
+def add():
+    name=input("enter your name:")
+    course=input("enter your course:")
+    phone=int(input("enter your phone number:"))
+    mail=input("enter your mail:")
+    reference=input("enter reference:")
+    startingdate=input("starting date of course:")
+    qualification=input("your last qualification:")
+    result={"name":name,"course":course,"phone":phone,"mail":mail,"reference":reference,"startingdate":startingdate,"qualification":qualification}
+    students.append(result)
+    print("students added successfully")
+def display():
+    print("List of students:")
+    for result in students:
+        print(f"name:{result['name']},Course:{result['course']},mail:{result['mail']},reference:{result['reference']},startingdate:{result['startingdate']},qualification:{result['qualification']}")
+def search():
+    name_to_search=input("enter the name to search:")
+    found=True
+    for result in students:
+        if result["name"] == name_to_search:
+            print(f"name:{result['name']},Course:{result['course']},mail:{result['mail']},reference:{result['reference']},startingdate:{result['startingdate']},qualification:{result['qualification']}")
+            found=True
+        if not found:
+            print("student not found")
+def remove():
+    name_to_remove=input("enter the name to remove:")
+    found=False
+    for student in students:
+        if student['name'] == name_to_remove:
+            students.remove(student)
+            found=True
+            print("Student removed successfully.")
+    if not found:
+        print("Student not found.")
+def main():
+    while True:
+        print("\nStudent management system \n 1. Add student \n 2. Display student \n 3. Search student \n 4. Remove student \n 5. Exit")
+        choice=input("Enter your choice (1-5): ")
+        
+        if choice=='1':
+            add()
+        elif choice=='2':
+            display()
+        elif choice=='3':
+            search()
+        elif choice=='4':
+            remove()
+        elif choice=='5':
+            print("Exiting the system.")
+            break
+        else:
+            print("invalid choice.")
+main()

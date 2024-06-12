@@ -1,0 +1,81 @@
+## PROJECT 3
+# hotel management system using functions
+class room: 
+    def __init__(self):
+        self.hotel=[]
+        
+    def addroom(self):
+        name=input("Enter your name:")
+        room=input("Enter the room  you want (Normal/Deluxe/Super Deluxe) :")
+        if room== "normal" or "Normal" or "Deluxe" or "Super Deluxe" or "duluxe" or "super deluxe":
+            import random
+            a= random.randint(1,300)
+            print("Your room number is",a)
+            abc= (f"Roomnumber:{a} , Name:{name} , Room:{room} , Payment:Done")
+            self.hotel.append(abc)
+            print(abc)
+        else:
+            print("Please enter a valid room type")
+    
+    def display(self):
+        print(self.hotel)
+        
+    def search(self):
+        room=int(input("Enter the room number you want to search:"))
+        if room in self.hotel:
+            print(self.hotel)
+        else:
+            print("Please enter a valid room number")
+            
+    def reserve(self):
+        res=input("Do you want to reserve a room:")
+        if res== "yes" or "Yes":
+            w= input("Which room do you want to reserve (Normal/Deluxe/Super Deluxe) :")
+            if w== "normal" or "Normal" or "Deluxe" or "Super Deluxe" or "duluxe" or "super deluxe":
+                import random
+                a= random.randint(1,300)
+                print("Your room number is",a)
+                xyz= (f"Roomnumber:{a} , Room:{w} , Payment:To be made")
+                self.hotel.append(xyz)
+                print(f"You will be proceeded to the payment gateway for {w} room")
+                print("Thank You")
+            else:
+                print("Please enter a valid room type")
+        else:
+            print("Main menu")
+            
+    def checkout(self):
+        che=input("Do you want to checkout:")
+        if che== "yes" or "Yes":
+            number= input("Enter your room number:")
+            if number in self.hotel:
+                self.hotel.remove(number)
+                print("Checked out")
+            else:
+                print("Main menu")
+        else:
+            print("Room not found")
+            
+def main():
+    hotel_system = room()
+    while True:
+        print("\n Hotel management system \n 1. Add room \n 2. Display room \n 3. Search room \n 4. Reserve room \n 5. Checkout room \n 6. Exit")
+        choice=input("Enter your choice (1-6): ")
+        
+        if choice=='1':
+             hotel_system.addroom()
+        elif choice=='2':
+            hotel_system.display()
+        elif choice=='3':
+             hotel_system.search()
+        elif choice=='4':
+             hotel_system.reserve()
+        elif choice=='5':
+             hotel_system.checkout()
+        elif choice=='6':
+             print("Exiting the system.")
+             break
+        else:
+            print("Invalid input.")
+
+main()

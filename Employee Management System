@@ -1,0 +1,87 @@
+## PROJECT 4 
+# employee management system using file handling
+def add():
+    name = input("Enter employee name: ")
+    salary = int(input("Enter employee salary in rupees: "))
+    post = input("Enter employee post: ")
+    cabin = int(input("Enter employee cabin number: "))
+    employee = f"{name},{salary},{post},{cabin}\n"
+    
+    with open('employeesystemproject.txt', 'a') as file:
+        file.write(employee)
+    
+    print("Employee info added successfully.")
+
+def display():
+    try:
+        with open('employeesystemproject.txt', 'r') as file:
+            content = file.read()
+            if content:
+                print(content)
+            else:
+                print("No data found.")
+    except FileNotFoundError:
+        print("No data file found. Please add an employee first.")
+
+def search():
+    name = input("Enter the name you want to search: ")
+    try:
+        with open('employeesystemproject.txt', 'r') as file:
+            lines = file.readlines()
+            found = False
+            for line in lines:
+                employee = line.strip().split(",")
+                if employee[0] == name:
+                    print(f"Name: {employee[0]}")
+                    print(f"Salary: {employee[1]}")
+                    print(f"Post: {employee[2]}")
+                    print(f"Cabin: {employee[3]}")
+                    found = True
+                    break
+            if not found:
+                print("Employee not found.")
+    except FileNotFoundError:
+        print("No data file found. Please add an employee first.")
+
+def remove():
+    name = input("Enter the name you want to remove: ")
+    try:
+        with open('employeesystemproject.txt', 'r') as file:
+            lines = file.readlines()
+        
+        with open('employeesystemproject.txt', 'w') as file:
+            removed = False
+            for line in lines:
+                employee = line.strip().split(",")
+                if employee[0] != name:
+                    file.write(line)
+                else:
+                    removed = True
+            
+            if removed:
+                print("Employee removed successfully.")
+            else:
+                print("Employee not found.")
+    except FileNotFoundError:
+        print("No data file found. Please add an employee first.")
+
+def main():
+    while True:
+        print("\n Employee management system \n 1. Add employee \n 2. Display data \n 3. Search employee \n 4. Remove employee \n 5. Exit")
+        choice = input("Enter your choice (1-5): ")
+        
+        if choice == '1':
+            add()
+        elif choice == '2':
+            display()
+        elif choice == '3':
+            search()
+        elif choice == '4':
+            remove()
+        elif choice == '5':
+            print("Exiting the system.")
+            break
+        else:
+            print("Invalid input. Try again.")
+
+main()
